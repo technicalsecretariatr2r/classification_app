@@ -7,150 +7,30 @@ from PIL import Image
 from textblob.classifiers import NaiveBayesClassifier
 from textblob import TextBlob
 
-nltk_data_dir = "./nltk_data/"
 
+@st.cache_data
+def setup_nltk_data(nltk_data_dir="./nltk_data/"):
+    """
+    Sets up the NLTK data directory and downloads required resources.
 
-nltk.data.path.clear()
-nltk.data.path.append(nltk_data_dir)
-# nltk.download("stopwords", download_dir=nltk_data_dir)
-nltk.download('punkt', download_dir=nltk_data_dir)
-nltk.download('wordnet', download_dir=nltk_data_dir)
+    Parameters:
+        nltk_data_dir (str): The directory where NLTK data will be stored.
+    """
+    # Clear existing paths and append the custom data directory
+    nltk.data.path.clear()
+    nltk.data.path.append(nltk_data_dir)
+    
+    # Download necessary NLTK resources
+    nltk.download('punkt', download_dir=nltk_data_dir)
+    nltk.download('wordnet', download_dir=nltk_data_dir)
+setup_nltk_data()
 
+# nltk_data_dir = "./nltk_data/"
+# nltk.data.path.clear()
+# nltk.data.path.append(nltk_data_dir)
+# nltk.download('punkt', download_dir=nltk_data_dir)
+# nltk.download('wordnet', download_dir=nltk_data_dir)
 
-def example_nltk():
-
-
-    # Training Data: 5 Categories
-    train_data = [
-        ("Hospitals are crucial for improving health outcomes.", "Health"),
-        ("Vaccinations reduce the spread of diseases.", "Health"),
-        ("A balanced diet includes fruits, vegetables, and proteins.", "Food"),
-        ("Restaurants must ensure food safety standards.", "Food"),
-        ("Roads and bridges are essential for transportation.", "Infrastructure"),
-        ("Better public infrastructure improves urban living.", "Infrastructure"),
-        ("Marine biodiversity is declining due to pollution.", "Oceans"),
-        ("Ocean currents regulate the global climate.", "Oceans"),
-        ("Affordable housing is necessary for growing populations.", "Human Settlement"),
-        ("Urbanization impacts natural habitats.", "Human Settlement")
-    ]
-
-    # Testing Data
-    test_data = [
-        ("Healthcare facilities are vital for community well-being.", "Health"),
-        ("Eating healthy food prevents chronic illnesses.", "Food"),
-        ("Good infrastructure supports economic development.", "Infrastructure"),
-        ("The oceans absorb large amounts of carbon dioxide.", "Oceans"),
-        ("Housing policies must address overcrowding in cities.", "Human Settlement")
-    ]
-
-    # Train the Naive Bayes Classifier
-    classifier = NaiveBayesClassifier(train_data)
-
-    # Streamlit App
-    st.title("Multi-Category Text Classifier")
-    st.write("Classify text into one of five categories: Health, Food, Infrastructure, Oceans, or Human Settlement.")
-
-    # User Input
-    input_text = st.text_area("Enter text to classify:", placeholder="Type something here...")
-
-    # Classify Button
-    if st.button("Classify"):
-        if input_text.strip():
-            # Classify the input text
-            blob = TextBlob(input_text, classifier=classifier)
-            classification = blob.classify()
-
-            # Display the classification
-            st.subheader("Result")
-            st.write(f"**Classified as:** {classification}")
-        else:
-            st.warning("Please enter some text to classify.")
-
-    # Show Classifier Accuracy
-    if st.checkbox("Show Classifier Accuracy on Test Data"):
-        accuracy = classifier.accuracy(test_data)
-        st.write(f"Classifier Accuracy: {accuracy:.2f}")
-
-    # Display Training Data
-    if st.checkbox("Show Training Data"):
-        st.subheader("Training Data")
-        st.write(train_data)
-
-    # Display Test Data
-    if st.checkbox("Show Test Data"):
-        st.subheader("Test Data")
-        st.write(test_data)
-# example_nltk()
-
-def example_use_textblob():
-    # Download NLTK resources (ensure this is done before running the app)
-    nltk.download('punkt')
-    nltk.download('wordnet')
-
-    # App Title
-    st.title("NLP Application with TextBlob")
-    st.write("A simple Natural Language Processing app for text analysis.")
-
-    # Sidebar
-    st.sidebar.title("Navigation")
-    options = st.sidebar.radio("Choose an option:", ["Home", "Sentiment Analysis", "Text Statistics", "Spell Checker"])
-
-    # Home Page
-    if options == "Home":
-        st.subheader("Welcome to the NLP App")
-        st.write("""
-        Use the navigation menu to:
-        - Analyze sentiment
-        - Get text statistics
-        - Check and correct spelling
-        """)
-
-    # Sentiment Analysis
-    elif options == "Sentiment Analysis":
-        st.subheader("Sentiment Analysis")
-        input_text = st.text_area("Enter text to analyze sentiment:")
-        
-        if st.button("Analyze Sentiment"):
-            if input_text.strip():
-                blob = TextBlob(input_text)
-                sentiment = blob.sentiment
-                st.write("**Polarity:**", sentiment.polarity)
-                st.write("**Subjectivity:**", sentiment.subjectivity)
-            else:
-                st.warning("Please enter some text!")
-
-    # Text Statistics
-    elif options == "Text Statistics":
-        st.subheader("Text Statistics")
-        input_text = st.text_area("Enter text to analyze statistics:")
-        
-        if st.button("Get Statistics"):
-            if input_text.strip():
-                blob = TextBlob(input_text)
-                st.write("**Number of Words:**", len(blob.words))
-                st.write("**Number of Sentences:**", len(blob.sentences))
-                st.write("**Noun Phrases:**", list(blob.noun_phrases))
-            else:
-                st.warning("Please enter some text!")
-
-    # Spell Checker
-    elif options == "Spell Checker":
-        st.subheader("Spell Checker")
-        input_text = st.text_area("Enter text to check and correct spelling:")
-        
-        if st.button("Check Spelling"):
-            if input_text.strip():
-                blob = TextBlob(input_text)
-                corrected_text = blob.correct()
-                st.write("**Original Text:**", input_text)
-                st.write("**Corrected Text:**", corrected_text)
-            else:
-                st.warning("Please enter some text!")
-
-    # Footer
-    st.sidebar.markdown("### About")
-    st.sidebar.write("This NLP app is powered by [TextBlob](https://textblob.readthedocs.io/) and built with [Streamlit](https://streamlit.io/).")
-# example_use_textblob()
 
 def structure_and_format():
     im = Image.open("images/header.png")
