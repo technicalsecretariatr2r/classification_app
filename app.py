@@ -6,7 +6,7 @@ import numpy as np
 from PIL import Image
 from textblob.classifiers import NaiveBayesClassifier
 from textblob import TextBlob
-import os
+
 
 # Set up NLTK to fetch data from a GitHub repository
 def setup_nltk_data_github(base_url):
@@ -28,7 +28,7 @@ def setup_nltk_data_github(base_url):
     nltk.data._open = lambda resource_url: RemoteFileFetcher(resource_url)
 
 # Base GitHub raw URL for nltk_data
-github_raw_url = "https://raw.githubusercontent.com/nltk/nltk_data/gh-pages"
+github_raw_url = "https://raw.githubusercontent.com/nltk/nltk_data/"
 
 # Set up NLTK to use GitHub raw files
 setup_nltk_data_github(github_raw_url)
