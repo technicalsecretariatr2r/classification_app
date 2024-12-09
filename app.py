@@ -31,7 +31,7 @@ from textblob import TextBlob
 # nltk.download('punkt', download_dir=nltk_data_dir)
 # nltk.download('wordnet', download_dir=nltk_data_dir)
 
-nltk_data_dir = "https://github.com/nltk/nltk/tree/7397ccfed06e7c836d3acb0b9197f6e6b26c6741/nltk" 
+nltk_data_dir = "https://github.com/nltk/nltk/tree/develop/nltk" 
 setup_nltk_data(nltk_data_dir)
 
 
