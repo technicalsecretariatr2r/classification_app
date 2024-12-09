@@ -10,8 +10,8 @@ from textblob import TextBlob
 nltk_data_dir = "./nltk_data/"
 
 
-nltk.data.path.clear()
-nltk.data.path.append(nltk_data_dir)
+# nltk.data.path.clear()
+# nltk.data.path.append(nltk_data_dir)
 # nltk.download("stopwords", download_dir=nltk_data_dir)
 nltk.download('punkt', download_dir=nltk_data_dir)
 nltk.download('wordnet', download_dir=nltk_data_dir)
