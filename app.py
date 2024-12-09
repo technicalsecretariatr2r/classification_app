@@ -7,6 +7,18 @@ from PIL import Image
 from textblob.classifiers import NaiveBayesClassifier
 from textblob import TextBlob
 
+
+try:
+    nltk.data.find('tokenizers/punkt')
+except LookupError:
+    nltk.download('punkt')
+
+try:
+    nltk.data.find('corpora/wordnet')
+except LookupError:
+    nltk.download('wordnet')
+
+
 def example_nltk():
 
 
