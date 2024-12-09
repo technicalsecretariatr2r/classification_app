@@ -7,58 +7,15 @@ from PIL import Image
 from textblob.classifiers import NaiveBayesClassifier
 from textblob import TextBlob
 
+nltk_data_dir = "./nltk_data/"
+nltk.data.path.append(nltk_data_dir)
 
-# Set up NLTK to fetch data from a GitHub repository
-def setup_nltk_data_github(base_url):
-    """
-    Configures NLTK to use data directly from a GitHub repository.
-
-    Parameters:
-        base_url (str): The base URL for the raw GitHub repository hosting the nltk_data files.
-    """
-    class RemoteFileFetcher(nltk.data.FileSystemPathPointer):
-        def __init__(self, url):
-            self.url = url
-
-        def open(self, encoding=None):
-            return urlopen(self.url)
-
-    nltk.data.path.clear()
-    nltk.data.path.append(base_url)
-    nltk.data._open = lambda resource_url: RemoteFileFetcher(resource_url)
-
-# Base GitHub raw URL for nltk_data
-github_raw_url = "https://raw.githubusercontent.com/nltk/nltk_data/"
-
-# Set up NLTK to use GitHub raw files
-setup_nltk_data_github(github_raw_url)
-
-
-# @st.cache_data
-# def setup_nltk_data(nltk_data_dir="./nltk_data/"):
-#     """
-#     Sets up the NLTK data directory and downloads required resources.
-
-#     Parameters:
-#         nltk_data_dir (str): The directory where NLTK data will be stored.
-#     """
-#     # Clear existing paths and append the custom data directory
-#     nltk.data.path.clear()
-#     nltk.data.path.append(nltk_data_dir)
-    
-#     # Download necessary NLTK resources
-#     nltk.download('punkt', download_dir=nltk_data_dir)
-#     nltk.download('wordnet', download_dir=nltk_data_dir)
-# setup_nltk_data()
 
 # nltk_data_dir = "./nltk_data/"
 # nltk.data.path.clear()
 # nltk.data.path.append(nltk_data_dir)
 # nltk.download('punkt', download_dir=nltk_data_dir)
 # nltk.download('wordnet', download_dir=nltk_data_dir)
-
-# nltk_data_dir = "https://github.com/nltk/nltk/tree/develop/nltk" 
-# setup_nltk_data(nltk_data_dir)
 
 
 
