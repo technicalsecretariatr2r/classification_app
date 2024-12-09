@@ -6,6 +6,7 @@ import numpy as np
 from PIL import Image
 from textblob.classifiers import NaiveBayesClassifier
 from textblob import TextBlob
+import os
 
 # Set up NLTK to fetch data from a GitHub repository
 def setup_nltk_data_github(base_url):
