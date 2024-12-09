@@ -1,12 +1,3 @@
-nltk_data_dir = "./nltk_data/"
-# if not os.path.exists(nltk_data_dir):
-#     os.makedirs(nltk_data_dir, exist_ok=True)
-nltk.data.path.clear()
-nltk.data.path.append(nltk_data_dir)
-nltk.download("stopwords", download_dir=nltk_data_dir)
-nltk.download('punkt', download_dir=nltk_data_dir)
-
-
 import streamlit as st
 import nltk
 import streamlit as st
@@ -16,17 +7,26 @@ from PIL import Image
 from textblob.classifiers import NaiveBayesClassifier
 from textblob import TextBlob
 
+nltk_data_dir = "./nltk_data/"
+# if not os.path.exists(nltk_data_dir):
+#     os.makedirs(nltk_data_dir, exist_ok=True)
+
+nltk.data.path.clear()
+nltk.data.path.append(nltk_data_dir)
+nltk.download("stopwords", download_dir=nltk_data_dir)
+nltk.download('punkt', download_dir=nltk_data_dir)
+nltk.download('wordnet', download_dir=nltk_data_dir)
 
 
-try:
-    nltk.data.find('tokenizers/punkt')
-except LookupError:
-    nltk.download('punkt')
+# try:
+#     nltk.data.find('tokenizers/punkt')
+# except LookupError:
+#     nltk.download('punkt')
 
-try:
-    nltk.data.find('corpora/wordnet')
-except LookupError:
-    nltk.download('wordnet')
+# try:
+#     nltk.data.find('corpora/wordnet')
+# except LookupError:
+#     nltk.download('wordnet')
 
 
 def example_nltk():
