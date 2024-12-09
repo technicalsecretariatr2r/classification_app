@@ -25,11 +25,15 @@ from textblob import TextBlob
 #     nltk.download('wordnet', download_dir=nltk_data_dir)
 # setup_nltk_data()
 
-nltk_data_dir = "./nltk_data/"
-nltk.data.path.clear()
-nltk.data.path.append(nltk_data_dir)
-nltk.download('punkt', download_dir=nltk_data_dir)
-nltk.download('wordnet', download_dir=nltk_data_dir)
+# nltk_data_dir = "./nltk_data/"
+# nltk.data.path.clear()
+# nltk.data.path.append(nltk_data_dir)
+# nltk.download('punkt', download_dir=nltk_data_dir)
+# nltk.download('wordnet', download_dir=nltk_data_dir)
+
+nltk_data_dir = "https://github.com/nltk/nltk/tree/7397ccfed06e7c836d3acb0b9197f6e6b26c6741/nltk" 
+setup_nltk_data(nltk_data_dir)
+
 
 
 def structure_and_format():
