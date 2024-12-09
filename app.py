@@ -8,28 +8,28 @@ from textblob.classifiers import NaiveBayesClassifier
 from textblob import TextBlob
 
 
-@st.cache_data
-def setup_nltk_data(nltk_data_dir="./nltk_data/"):
-    """
-    Sets up the NLTK data directory and downloads required resources.
+# @st.cache_data
+# def setup_nltk_data(nltk_data_dir="./nltk_data/"):
+#     """
+#     Sets up the NLTK data directory and downloads required resources.
 
-    Parameters:
-        nltk_data_dir (str): The directory where NLTK data will be stored.
-    """
-    # Clear existing paths and append the custom data directory
-    nltk.data.path.clear()
-    nltk.data.path.append(nltk_data_dir)
+#     Parameters:
+#         nltk_data_dir (str): The directory where NLTK data will be stored.
+#     """
+#     # Clear existing paths and append the custom data directory
+#     nltk.data.path.clear()
+#     nltk.data.path.append(nltk_data_dir)
     
-    # Download necessary NLTK resources
-    nltk.download('punkt', download_dir=nltk_data_dir)
-    nltk.download('wordnet', download_dir=nltk_data_dir)
-setup_nltk_data()
+#     # Download necessary NLTK resources
+#     nltk.download('punkt', download_dir=nltk_data_dir)
+#     nltk.download('wordnet', download_dir=nltk_data_dir)
+# setup_nltk_data()
 
-# nltk_data_dir = "./nltk_data/"
-# nltk.data.path.clear()
-# nltk.data.path.append(nltk_data_dir)
-# nltk.download('punkt', download_dir=nltk_data_dir)
-# nltk.download('wordnet', download_dir=nltk_data_dir)
+nltk_data_dir = "./nltk_data/"
+nltk.data.path.clear()
+nltk.data.path.append(nltk_data_dir)
+nltk.download('punkt', download_dir=nltk_data_dir)
+nltk.download('wordnet', download_dir=nltk_data_dir)
 
 
 def structure_and_format():
